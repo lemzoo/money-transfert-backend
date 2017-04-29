@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="{0}/MajPortail" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="{0}/MajPortail">
+  <wsdl:types>
+    <xs:schema xmlns:ns1="{0}/MajPortailNS" xmlns:ns2="{0}/MajPortailResponse" xmlns:tns="{0}/MajPortailNS" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="{0}/MajPortail">
+      <xs:import namespace="{0}/MajPortailNS" schemaLocation="MajPortailParams.xsd"/>
+      <xs:import namespace="{0}/MajPortailResponse" schemaLocation="MajPortailResponse.xsd"/>
+      <xs:element name="MajPortail">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="MAJPORTAIL" type="ns1:MajPortail"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="MajPortailResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="REPONSE" type="ns2:ReponsePortail"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="MajPortail">
+    <wsdl:part element="tns:MajPortail" name="MajPortail"/>
+  </wsdl:message>
+  <wsdl:message name="MajPortailResponse">
+    <wsdl:part element="tns:MajPortailResponse" name="REPONSE"/>
+  </wsdl:message>
+  <wsdl:portType name="MajPortailPortType">
+    <wsdl:operation name="MajPortail">
+      <wsdl:input message="tns:MajPortail"/>
+      <wsdl:output message="tns:MajPortailResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MajPortailBinding" type="tns:MajPortailPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="MajPortail">
+      <soap:operation soapAction="urn:MajPortail"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MajPortail">
+    <wsdl:port binding="tns:MajPortailBinding" name="MajPortailPortType">
+      <soap:address location="{0}/MajPortail"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
