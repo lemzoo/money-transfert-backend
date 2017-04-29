@@ -1,2 +1,0 @@
-class DnaImportInvalidCSVError(Exception):
-    pass
